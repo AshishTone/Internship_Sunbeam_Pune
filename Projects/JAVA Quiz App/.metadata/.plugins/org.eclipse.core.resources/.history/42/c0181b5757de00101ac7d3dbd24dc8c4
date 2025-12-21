@@ -1,0 +1,37 @@
+package com.app.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.app.util.Dbutil;
+
+public class AttemptDao implements AutoCloseable{
+	private static Connection connection = null;
+
+	public AttemptDao() throws SQLException {
+		connection = Dbutil.getConnection();
+	}
+	
+	public boolean hasAttemptedBefore(int studentId,int quizId) throws SQLException {
+		String sql = "SELECT * FROM quiz_attempts WHERE student_id = ? AND quiz_id = ?";
+		PreparedStatement selectStatement = connection.prepareStatement(sql);
+		selectStatement.setInt(1, studentId);
+		selectStatement.setInt(2, quizId);
+		ResultSet rs = selectStatement.executeQuery();
+		return rs.next();
+	}
+	
+	public void recordAttempt() {
+		
+	}
+	
+	@Override
+	public void close() throws SQLException {
+		if (connection != null) {
+			connection.close();
+			connection = null;
+		}
+	}
+}

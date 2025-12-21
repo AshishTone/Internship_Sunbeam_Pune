@@ -1,0 +1,24 @@
+package com.app.model;
+ import java.time.LocalDateTime;
+public class Attempt {
+	public int id;
+	public int quizId;
+	public int student_id;
+	public int score;
+	public int total;
+	public LocalDateTime attemptTime ;
+	public Attempt(int id, int quizId, int student_id, int score, int total, LocalDateTime attemptTime) {
+		super();
+		this.id = id;
+		this.quizId = quizId;
+		this.student_id = student_id;
+		this.score = score;
+		this.total = total;
+		this.attemptTime = attemptTime;
+	}
+	
+	public Attempt() {
+		
+	}
+
+}

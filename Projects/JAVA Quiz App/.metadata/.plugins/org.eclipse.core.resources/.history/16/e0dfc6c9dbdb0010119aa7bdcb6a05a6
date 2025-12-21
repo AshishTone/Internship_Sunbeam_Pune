@@ -1,0 +1,13 @@
+package com.app.dao;
+
+public class UserDao {
+	public static boolean adminLogin() {
+		
+		return false;
+	}
+	
+	public static boolean studentLogin() {
+		
+		return false;
+	}
+}

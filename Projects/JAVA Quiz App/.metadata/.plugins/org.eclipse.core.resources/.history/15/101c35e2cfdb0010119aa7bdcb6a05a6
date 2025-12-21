@@ -1,0 +1,19 @@
+package com.app.menu;
+
+import java.util.Scanner;
+
+public class MainMenu {
+	
+	public static int options (Scanner sc) {
+		System.out.println("0. EXIT");
+		System.out.println("1. Admin Login");
+		System.out.println("2. Student Login");
+		System.out.print("Enter your choice - ");
+		return sc.nextInt();
+	}
+	
+	public static void getMainMenu(Scanner sc) {
+		
+	}
+
+}

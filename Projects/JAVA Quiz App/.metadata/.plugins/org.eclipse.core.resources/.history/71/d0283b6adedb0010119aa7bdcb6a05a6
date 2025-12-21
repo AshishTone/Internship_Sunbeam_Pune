@@ -1,0 +1,18 @@
+package com.app.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.app.util.Dbutil;
+
+public class UserDao {
+	public static boolean adminLogin(String username,String password) throws SQLException {
+		Connection  connection = Dbutil.getConnection();
+		return false;
+	}
+	
+	public static boolean studentLogin(String username,String password) {
+		
+		return false;
+	}
+}

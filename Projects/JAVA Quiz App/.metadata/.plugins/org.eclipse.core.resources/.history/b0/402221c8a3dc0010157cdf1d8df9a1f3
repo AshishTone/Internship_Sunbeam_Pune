@@ -1,0 +1,34 @@
+package com.app.dao;
+
+import java.awt.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.io.*;
+import java.util.*;
+import com.app.model.*;
+import com.app.util.Dbutil;
+
+public class QuizDao {
+	public QuizDao() {
+
+	}
+
+	public void addQuizTitle(String quizName,int creator_id) throws SQLException {
+		Connection connection = Dbutil.getConnection();
+
+		String sql = "insert into quizzes(title, creator_id) values(?,?)";
+		PreparedStatement inserQuizTitle = connection.prepareStatement(sql);
+		inserQuizTitle.setString(1, quizName);
+		inserQuizTitle.setInt(2, 1);
+		inserQuizTitle.executeUpdate();
+	}
+	
+	public static List<Quiz> getQuizList(){
+		List<Quiz> ls = new ArrayList<>();
+		
+		return ls;
+		
+	}
+
+}

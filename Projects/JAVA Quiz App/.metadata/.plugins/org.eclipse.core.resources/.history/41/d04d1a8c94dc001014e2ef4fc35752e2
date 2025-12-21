@@ -1,0 +1,8 @@
+package com.app.dao;
+
+public class QuizDao {
+	public QuizDao() {
+		
+	}
+
+}

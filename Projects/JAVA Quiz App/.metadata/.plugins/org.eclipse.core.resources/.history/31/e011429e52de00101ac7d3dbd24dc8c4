@@ -1,0 +1,91 @@
+package com.app.service;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.app.dao.AttemptDao;
+import com.app.dao.QuestionsDao;
+import com.app.dao.QuizDao;
+import com.app.dao.UserDao;
+import com.app.model.Question;
+import com.app.model.Quiz;
+
+public class StudentService {
+
+	public static void userResistration(Scanner sc) {
+		System.out.print("Enter new student name: ");
+		String name = sc.next();
+		System.out.print("Enter student email: ");
+		String email = sc.next();
+		System.out.print("Enter the password: ");
+		String password = sc.next();
+		UserDao.registerUser(name, email, password);
+	}
+
+	public static boolean authenticateStudent(Scanner sc) {
+		System.out.print("Enter Student username: ");
+		String username = sc.next();
+		System.out.print("Enter Student password: ");
+		String password = sc.next();
+		if (UserDao.studentLogin(username, password))
+			return true;
+		return false;
+	}
+
+	public static void viewQuizzes() {
+		System.out.println("\n== All Available Quizzes ==");
+		try {
+			QuizDao quiz = new QuizDao();
+			List<Quiz> quizList = quiz.getQuizList();
+			int i = 1;
+			for (Quiz ls : quizList) {
+				System.out.println(i + ") ID: " + ls.getId() + " :: Title: " + ls.getTitle());
+				i++;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void takeQuiz(Scanner sc) {
+		System.out.println("\n== Taking Quiz ==");
+		System.out.println("Enter the quiz ID: ");
+		int quiz_id = sc.nextInt();
+		AttemptDao attemptDao = new AttemptDao();
+		UserDao userDao = new UserDao();
+		if(attemptDao.hasAttemptedBefore(userDao.getCurrentStudentId()) == false) {
+			System.out.println("----Quiz start----");
+			try {
+				QuestionsDao qd = new QuestionsDao();
+				List<Question> questionsList = qd.getQuestions(quiz_id);
+				int numberOfQuestins = questionsList.size();
+				System.out.println("Number of questions in the quiz: " + numberOfQuestins);
+				for(int i = 0; i < numberOfQuestins; i++) {
+					Question q = questionsList.get(i);
+					System.out.println(i+1 + ") " + q.getText());
+					System.out.println("    a) " + q.getA());
+					System.out.println("    b) " + q.getB());
+					System.out.println("    c) " + q.getC());
+					System.out.println("    d) " + q.getD());
+					System.out.println("Enter correct option: ");
+					String userInput = sc.next();
+					if(q.getCorrect() == )
+//					attemptDao.isCorrectAnswer(userInput,);
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			System.out.println("Congrats you have already attempted this quiz!");
+		}
+		
+
+	}
+
+	public static void viewScore() {
+
+	}
+}

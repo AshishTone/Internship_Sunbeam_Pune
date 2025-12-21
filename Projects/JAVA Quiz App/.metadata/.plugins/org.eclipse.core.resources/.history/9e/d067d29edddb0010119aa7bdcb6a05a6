@@ -1,0 +1,9 @@
+package com.app.model;
+
+public class Quiz {
+	
+	public int id;
+	public String title;
+	public Integer creatorId;
+
+}

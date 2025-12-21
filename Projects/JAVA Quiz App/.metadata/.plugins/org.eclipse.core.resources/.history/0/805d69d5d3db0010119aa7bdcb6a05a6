@@ -1,0 +1,17 @@
+package com.app.menu;
+
+import java.util.Scanner;
+
+public class AdminMenu {
+	public static int options(Scanner sc) {
+		System.out.println("0. EXIT");
+		System.out.println("1. Create quiz");
+		System.out.println("2. Display Quizzes");
+		System.out.print("Enter your choice: ");
+		return sc.nextInt();
+		return sc.nextInt();
+	}
+	public static void getadminMenu() {
+		
+	}
+}

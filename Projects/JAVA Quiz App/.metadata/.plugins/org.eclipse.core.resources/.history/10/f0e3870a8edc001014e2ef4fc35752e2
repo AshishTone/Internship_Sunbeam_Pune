@@ -1,0 +1,55 @@
+package com.app.dao;
+
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.app.model.Question;
+import com.app.util.Dbutil;
+import com.app.util.QuestionFileParser;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
+
+public class QuestionsDao {
+	public QuestionsDao(){
+		
+	}
+	
+	public static void loadQuizzes(String quizName,String path) throws SQLException {
+		Connection connection = Dbutil.getConnection();
+		
+		String sql = "insert into quizzes(title, creator) values(?,?)";
+		PreparedStatement inserQuizTitle = connection.prepareStatement(sql);
+		inserQuizTitle.setString(1, quizName);
+		inserQuizTitle.setInt(2, 1);
+		inserQuizTitle.executeUpdate();
+		
+		
+		try {
+			List<Question> questionsList = QuestionFileParser.parse(new File (path));
+			String sqlQuizName = "select id from quizzes where title = ?";
+			PreparedStatement selectQuizTitle = connection.prepareStatement(sql);
+			selectQuizTitle.setString(1, quizName);
+			ResultSet rs1 = selectQuizTitle.executeQuery();
+			
+			String ques = "insert into questions(quiz_id,question_text,option_a,option_b,option_c,option_d,correct_option) values(?,?,?,?,?,?,?)";
+			PreparedStatement insertQuestion = connection.prepareStatement(sql);
+			insertQuestion.setInt(1, rs1.getInt(1));
+			insertQuestion.setString(2, questionsList.getFirst().text);
+			insertQuestion.setString(3, questionsList.getFirst().a);
+			insertQuestion.setString(4, questionsList.getFirst().b);
+			insertQuestion.setString(5, questionsList.getFirst().c);
+			insertQuestion.setString(6, questionsList.getFirst().d);
+			insertQuestion.setInt(7, questionsList.getFirst().correct);
+			
+
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

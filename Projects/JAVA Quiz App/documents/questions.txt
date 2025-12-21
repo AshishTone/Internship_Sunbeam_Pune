@@ -1,0 +1,20 @@
+What is the capital of India?
+A) Mumbai
+B) Delhi
+C) Chennai
+D) Kolkata
+ANSWER:B
+
+Which data type is used to store true/false values in Java?
+A) int
+B) String
+C) boolean
+D) float
+ANSWER:C
+
+Which keyword is used to create an object in Java?
+A) class
+B) new
+C) this
+D) static
+ANSWER:B

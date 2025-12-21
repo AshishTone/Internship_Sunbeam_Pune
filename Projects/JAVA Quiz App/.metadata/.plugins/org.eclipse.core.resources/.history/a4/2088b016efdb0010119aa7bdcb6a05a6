@@ -1,0 +1,71 @@
+package com.app.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.app.util.Dbutil;
+
+public class UserDao {
+	public static boolean adminLogin(String username, String password) {
+		try {
+			Connection connection = Dbutil.getConnection();
+			String sql = "SELECT * FROM users  where username = ? AND password=? AND role='user'";
+			PreparedStatement selectStatement = connection.prepareStatement(sql);
+			selectStatement.setString(1, username);
+			selectStatement.setString(2, password);
+
+			ResultSet rs = selectStatement.executeQuery();
+
+			if (rs.next() && rs.getString(2).equals(username) && rs.getString(3).equals(password)
+					&& rs.getString(4).equals("admin")) {// uname,pass,role
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static boolean studentLogin(String username, String password) {
+		try {
+			Connection connection = Dbutil.getConnection();
+			String sql = "SELECT * FROM users  where username = ? AND password=? AND role='user'";
+			PreparedStatement selectStatement = connection.prepareStatement(sql);
+			selectStatement.setString(1, username);
+			selectStatement.setString(2, password);
+
+			ResultSet rs = selectStatement.executeQuery();
+
+			if (rs.next() && rs.getString(2).equals(username) && rs.getString(3).equals(password)
+					&& rs.getString(4).equals("admin")) {// uname,pass,role
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static void registerUser(String username, String password) {
+		try {
+			Connection connection = Dbutil.getConnection();
+			String sql = "INSERT INTO users(username,password,role) values(?,?,?)";
+			PreparedStatement selectStatement = connection.prepareStatement(sql);
+			selectStatement.setString(1, username);
+			selectStatement.setString(2, password);
+			selectStatement.setString(3, "user");
+
+			selectStatement.executeUpdate();
+			System.out.println("Registration Succsess!");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+}
+
+
+
+

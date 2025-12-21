@@ -1,0 +1,3 @@
+INDEX VERSION 1.134+E:\Engineering\Sunbeam Pune\Internship_Sunbeam_Pune\Projects\JAVA Quiz App\.metadata\.plugins\org.eclipse.jdt.core
+2052332167.index
+1865797976.index

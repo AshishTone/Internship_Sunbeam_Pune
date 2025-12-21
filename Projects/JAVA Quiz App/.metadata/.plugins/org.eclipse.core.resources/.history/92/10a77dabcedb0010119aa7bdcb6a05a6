@@ -1,0 +1,8 @@
+package com.app.menu;
+
+public class MainMenu {
+	public static void getMainMenu() {
+		
+	}
+
+}

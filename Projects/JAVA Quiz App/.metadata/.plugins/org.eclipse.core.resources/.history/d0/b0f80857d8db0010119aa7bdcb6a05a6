@@ -1,0 +1,33 @@
+package com.app.menu;
+
+import java.util.Scanner;
+import com.app.service.*;
+
+public class AdminMenu {
+	public static int options(Scanner sc) {
+		System.out.println("1. Create quiz");
+		System.out.println("2. Display Quizzes");
+		System.out.println("3. View Result");
+		System.out.println("5. Delete Quiz");
+		System.out.println("6Delete ");
+		System.out.print("Enter your choice: ");
+		return sc.nextInt();
+	}
+
+	public static void getadminMenu(Scanner sc) {
+		int choice;
+		while ((choice = options(sc)) != 0) {
+			switch (choice) {
+			case 1:
+				AdminService.createQuiz(sc);
+				break;
+			case 2:
+				AdminService.displayQuizzes();
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid choice value: " + choice);
+			}
+		}
+
+	}
+}

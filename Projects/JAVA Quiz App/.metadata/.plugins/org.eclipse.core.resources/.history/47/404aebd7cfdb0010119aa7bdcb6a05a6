@@ -1,0 +1,10 @@
+package com.app.menu;
+
+import java.util.Scanner;
+
+public class MainMenu {
+	public static void getMainMenu(Scanner sc) {
+		
+	}
+
+}

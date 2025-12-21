@@ -1,0 +1,7 @@
+package com.app.dao;
+
+public class UserDao {
+	public static void adminLogin() {
+		
+	}
+}

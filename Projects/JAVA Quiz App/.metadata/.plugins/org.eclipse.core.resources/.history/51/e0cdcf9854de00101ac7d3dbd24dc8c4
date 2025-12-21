@@ -1,0 +1,32 @@
+package com.app.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.app.util.Dbutil;
+import com.mysql.cj.jdbc.PreparedStatementWrapper;
+import com.mysql.cj.protocol.Resultset;
+
+public class AttemptDao {
+	private static Connection connection = null;
+
+	public AttemptDao() throws SQLException {
+		connection = Dbutil.getConnection();
+	}
+	
+	public boolean hasAttemptedBefore(int studentId,int quizId) {
+		String sql = "SELECT * FROM quiz_attempts";
+		PreparedStatement selectStatement = connection.prepareStatement(sql);
+		Resultset rs = selectStatement.executeQuery();
+		return false;
+	}
+	
+	@Override
+	public void close() throws SQLException {
+		if (connection != null) {
+			connection.close();
+			connection = null;
+		}
+	}
+}

@@ -1,0 +1,15 @@
+package com.app.dao;
+
+import com.app.util.Dbutil;
+
+public class UserDao {
+	public static boolean adminLogin(String username,String password) {
+		Dbutil
+		return false;
+	}
+	
+	public static boolean studentLogin(String username,String password) {
+		
+		return false;
+	}
+}
